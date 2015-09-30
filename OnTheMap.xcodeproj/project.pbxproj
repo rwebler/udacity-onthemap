@@ -8,11 +8,26 @@
 
 /* Begin PBXBuildFile section */
 		F7DC12F61BB8924900A73687 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7DC12F51BB8924900A73687 /* AppDelegate.swift */; };
-		F7DC12F81BB8924900A73687 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7DC12F71BB8924900A73687 /* ViewController.swift */; };
+		F7DC12F81BB8924900A73687 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7DC12F71BB8924900A73687 /* LoginViewController.swift */; };
 		F7DC12FB1BB8924900A73687 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7DC12F91BB8924900A73687 /* Main.storyboard */; };
 		F7DC12FD1BB8924900A73687 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F7DC12FC1BB8924900A73687 /* Images.xcassets */; };
 		F7DC13001BB8924900A73687 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7DC12FE1BB8924900A73687 /* LaunchScreen.xib */; };
 		F7DC130C1BB8924A00A73687 /* OnTheMapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7DC130B1BB8924A00A73687 /* OnTheMapTests.swift */; };
+		F7DC13191BB9437000A73687 /* UdacityClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7DC13181BB9437000A73687 /* UdacityClient.swift */; };
+		F7DC131A1BB9437000A73687 /* UdacityClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7DC13181BB9437000A73687 /* UdacityClient.swift */; };
+		F7DC131C1BB9438000A73687 /* Parse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7DC131B1BB9438000A73687 /* Parse.swift */; };
+		F7DC131D1BB9438000A73687 /* Parse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7DC131B1BB9438000A73687 /* Parse.swift */; };
+		F7DC131F1BB94FA300A73687 /* StudentInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7DC131E1BB94FA300A73687 /* StudentInformation.swift */; };
+		F7DC13201BB94FA300A73687 /* StudentInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7DC131E1BB94FA300A73687 /* StudentInformation.swift */; };
+		F7DC13241BBA063100A73687 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F7DC13211BBA063100A73687 /* Roboto-Medium.ttf */; };
+		F7DC13251BBA063100A73687 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F7DC13211BBA063100A73687 /* Roboto-Medium.ttf */; };
+		F7DC13261BBA063100A73687 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F7DC13221BBA063100A73687 /* Roboto-Regular.ttf */; };
+		F7DC13271BBA063100A73687 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F7DC13221BBA063100A73687 /* Roboto-Regular.ttf */; };
+		F7DC13281BBA063100A73687 /* Roboto-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F7DC13231BBA063100A73687 /* Roboto-Thin.ttf */; };
+		F7DC13291BBA063100A73687 /* Roboto-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F7DC13231BBA063100A73687 /* Roboto-Thin.ttf */; };
+		F7DC132B1BBA0F2500A73687 /* UdacityConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7DC132A1BBA0F2500A73687 /* UdacityConstants.swift */; };
+		F7DC132C1BBA0F2500A73687 /* UdacityConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7DC132A1BBA0F2500A73687 /* UdacityConstants.swift */; };
+		F7DC132E1BBA21B500A73687 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7DC12F71BB8924900A73687 /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,13 +44,20 @@
 		F7DC12F01BB8924900A73687 /* OnTheMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnTheMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7DC12F41BB8924900A73687 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F7DC12F51BB8924900A73687 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F7DC12F71BB8924900A73687 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F7DC12F71BB8924900A73687 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		F7DC12FA1BB8924900A73687 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F7DC12FC1BB8924900A73687 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		F7DC12FF1BB8924900A73687 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		F7DC13051BB8924A00A73687 /* OnTheMapTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OnTheMapTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7DC130A1BB8924A00A73687 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F7DC130B1BB8924A00A73687 /* OnTheMapTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnTheMapTests.swift; sourceTree = "<group>"; };
+		F7DC13181BB9437000A73687 /* UdacityClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityClient.swift; sourceTree = "<group>"; };
+		F7DC131B1BB9438000A73687 /* Parse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parse.swift; sourceTree = "<group>"; };
+		F7DC131E1BB94FA300A73687 /* StudentInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentInformation.swift; sourceTree = "<group>"; };
+		F7DC13211BBA063100A73687 /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
+		F7DC13221BBA063100A73687 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
+		F7DC13231BBA063100A73687 /* Roboto-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Thin.ttf"; sourceTree = "<group>"; };
+		F7DC132A1BBA0F2500A73687 /* UdacityConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityConstants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,10 +100,8 @@
 			isa = PBXGroup;
 			children = (
 				F7DC12F51BB8924900A73687 /* AppDelegate.swift */,
-				F7DC12F71BB8924900A73687 /* ViewController.swift */,
-				F7DC12F91BB8924900A73687 /* Main.storyboard */,
-				F7DC12FC1BB8924900A73687 /* Images.xcassets */,
-				F7DC12FE1BB8924900A73687 /* LaunchScreen.xib */,
+				F7DC13171BB9428100A73687 /* Model */,
+				F7DC13161BB9427200A73687 /* Controller */,
 				F7DC12F31BB8924900A73687 /* Supporting Files */,
 			);
 			path = OnTheMap;
@@ -90,6 +110,12 @@
 		F7DC12F31BB8924900A73687 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F7DC13211BBA063100A73687 /* Roboto-Medium.ttf */,
+				F7DC13221BBA063100A73687 /* Roboto-Regular.ttf */,
+				F7DC13231BBA063100A73687 /* Roboto-Thin.ttf */,
+				F7DC12FC1BB8924900A73687 /* Images.xcassets */,
+				F7DC12F91BB8924900A73687 /* Main.storyboard */,
+				F7DC12FE1BB8924900A73687 /* LaunchScreen.xib */,
 				F7DC12F41BB8924900A73687 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -110,6 +136,33 @@
 				F7DC130A1BB8924A00A73687 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F7DC13161BB9427200A73687 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				F7DC12F71BB8924900A73687 /* LoginViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		F7DC13171BB9428100A73687 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F7DC132D1BBA0F2C00A73687 /* Udacity */,
+				F7DC131B1BB9438000A73687 /* Parse.swift */,
+				F7DC131E1BB94FA300A73687 /* StudentInformation.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		F7DC132D1BBA0F2C00A73687 /* Udacity */ = {
+			isa = PBXGroup;
+			children = (
+				F7DC13181BB9437000A73687 /* UdacityClient.swift */,
+				F7DC132A1BBA0F2500A73687 /* UdacityConstants.swift */,
+			);
+			name = Udacity;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -192,7 +245,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F7DC13241BBA063100A73687 /* Roboto-Medium.ttf in Resources */,
 				F7DC12FB1BB8924900A73687 /* Main.storyboard in Resources */,
+				F7DC13281BBA063100A73687 /* Roboto-Thin.ttf in Resources */,
+				F7DC13261BBA063100A73687 /* Roboto-Regular.ttf in Resources */,
 				F7DC13001BB8924900A73687 /* LaunchScreen.xib in Resources */,
 				F7DC12FD1BB8924900A73687 /* Images.xcassets in Resources */,
 			);
@@ -202,6 +258,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F7DC13271BBA063100A73687 /* Roboto-Regular.ttf in Resources */,
+				F7DC13251BBA063100A73687 /* Roboto-Medium.ttf in Resources */,
+				F7DC13291BBA063100A73687 /* Roboto-Thin.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -212,8 +271,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F7DC12F81BB8924900A73687 /* ViewController.swift in Sources */,
+				F7DC12F81BB8924900A73687 /* LoginViewController.swift in Sources */,
+				F7DC131C1BB9438000A73687 /* Parse.swift in Sources */,
 				F7DC12F61BB8924900A73687 /* AppDelegate.swift in Sources */,
+				F7DC131F1BB94FA300A73687 /* StudentInformation.swift in Sources */,
+				F7DC13191BB9437000A73687 /* UdacityClient.swift in Sources */,
+				F7DC132B1BBA0F2500A73687 /* UdacityConstants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -221,7 +284,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F7DC132E1BBA21B500A73687 /* LoginViewController.swift in Sources */,
+				F7DC13201BB94FA300A73687 /* StudentInformation.swift in Sources */,
+				F7DC132C1BBA0F2500A73687 /* UdacityConstants.swift in Sources */,
 				F7DC130C1BB8924A00A73687 /* OnTheMapTests.swift in Sources */,
+				F7DC131D1BB9438000A73687 /* Parse.swift in Sources */,
+				F7DC131A1BB9437000A73687 /* UdacityClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

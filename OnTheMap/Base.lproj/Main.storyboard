@@ -1,13 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="Roboto-Medium.ttf">
+            <string>Roboto-Medium</string>
+            <string>Roboto-Medium</string>
+        </mutableArray>
+        <mutableArray key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
+        </mutableArray>
+    </customFonts>
     <scenes>
-        <!--View Controller-->
+        <!--Login View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="vXZ-lx-hvc" customClass="LoginViewController" customModule="OnTheMap" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -15,11 +25,140 @@
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Udacity" translatesAutoresizingMaskIntoConstraints="NO" id="Ieu-iy-see">
+                                <rect key="frame" x="250" y="28" width="101" height="101"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="101" id="hGC-ge-usY"/>
+                                    <constraint firstAttribute="width" constant="101" id="qbA-rI-uAF"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Login to Udacity" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CdN-fg-isB">
+                                <rect key="frame" x="16" y="137" width="568" height="40"/>
+                                <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="24"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BOq-xI-yUs">
+                                <rect key="frame" x="150" y="185" width="300" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="aD8-Tb-Zv3"/>
+                                    <constraint firstAttribute="height" constant="30" id="wBd-BS-hBz"/>
+                                </constraints>
+                                <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="16"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Uhe-Mb-ETm">
+                                <rect key="frame" x="150" y="244" width="300" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="6j6-jA-e84"/>
+                                    <constraint firstAttribute="width" constant="300" id="hDu-fj-xrK"/>
+                                </constraints>
+                                <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="16"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BY8-bP-fOJ">
+                                <rect key="frame" x="150" y="285" width="300" height="30"/>
+                                <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="16"/>
+                                <state key="normal" title="Login">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="pressLoginButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="6zr-0z-OcN"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="BOq-xI-yUs" firstAttribute="top" secondItem="CdN-fg-isB" secondAttribute="bottom" constant="8" id="0sc-oU-sdB"/>
+                            <constraint firstAttribute="centerX" secondItem="Ieu-iy-see" secondAttribute="centerX" constant="-0.5" id="5ly-Ox-jdF"/>
+                            <constraint firstItem="Ieu-iy-see" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="8" id="EAe-4i-XAp"/>
+                            <constraint firstAttribute="centerX" secondItem="BY8-bP-fOJ" secondAttribute="centerX" id="FAU-BG-q1z"/>
+                            <constraint firstAttribute="centerX" secondItem="BOq-xI-yUs" secondAttribute="centerX" id="UV5-up-3aK"/>
+                            <constraint firstAttribute="centerX" secondItem="Uhe-Mb-ETm" secondAttribute="centerX" id="ZXh-Hm-wlA"/>
+                            <constraint firstItem="BY8-bP-fOJ" firstAttribute="top" secondItem="Uhe-Mb-ETm" secondAttribute="bottom" constant="11" id="gfU-GR-KW6"/>
+                            <constraint firstItem="Uhe-Mb-ETm" firstAttribute="top" secondItem="BOq-xI-yUs" secondAttribute="bottom" constant="29" id="kBZ-nc-lyK"/>
+                            <constraint firstAttribute="centerX" secondItem="CdN-fg-isB" secondAttribute="centerX" id="miU-UK-CmG"/>
+                            <constraint firstItem="CdN-fg-isB" firstAttribute="top" secondItem="Ieu-iy-see" secondAttribute="bottom" constant="8" id="uKk-3i-aHT"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="emailTextField" destination="BOq-xI-yUs" id="Eiq-FS-wLw"/>
+                        <outlet property="loginMessageLabel" destination="CdN-fg-isB" id="1xa-ok-uNI"/>
+                        <outlet property="passwordTextField" destination="Uhe-Mb-ETm" id="wMj-Ow-MLP"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-934" y="221"/>
+        </scene>
+        <!--Root View Controller-->
+        <scene sceneID="gpy-1w-zx4">
+            <objects>
+                <tableViewController id="u1I-Rb-WUm" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="VQ9-sq-VkW">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="hGk-1b-EQu">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hGk-1b-EQu" id="Oso-ao-xb7">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="u1I-Rb-WUm" id="sex-dX-XxK"/>
+                            <outlet property="delegate" destination="u1I-Rb-WUm" id="4ey-GH-h5s"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Root View Controller" id="MtI-CC-zcw"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JI1-R8-91g" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1701" y="-112"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="yBa-Co-p8P">
+            <objects>
+                <navigationController storyboardIdentifier="ManagerNavigationController" id="bYH-B5-ICo" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" systemItem="featured" id="8DJ-am-8hv"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="jIu-QR-E9O">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="u1I-Rb-WUm" kind="relationship" relationship="rootViewController" id="N9f-Ye-TmZ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hc7-b6-dH1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="709" y="221"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="r2a-S2-7Hg">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="Z6g-oU-EeN" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="mxS-xS-evb">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="bYH-B5-ICo" kind="relationship" relationship="viewControllers" id="0kH-sG-mWu"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pv7-7N-Ftg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-103" y="221"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Udacity" width="256" height="256"/>
+    </resources>
 </document>
