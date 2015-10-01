@@ -28,6 +28,11 @@
 		F7DC132B1BBA0F2500A73687 /* UdacityConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7DC132A1BBA0F2500A73687 /* UdacityConstants.swift */; };
 		F7DC132C1BBA0F2500A73687 /* UdacityConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7DC132A1BBA0F2500A73687 /* UdacityConstants.swift */; };
 		F7DC132E1BBA21B500A73687 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7DC12F71BB8924900A73687 /* LoginViewController.swift */; };
+		F7DC13301BBCA9C500A73687 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7DC132F1BBCA9C500A73687 /* MapKit.framework */; };
+		F7DC13321BBCAA9600A73687 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7DC13311BBCAA9600A73687 /* MapViewController.swift */; };
+		F7DC13331BBCAA9600A73687 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7DC13311BBCAA9600A73687 /* MapViewController.swift */; };
+		F7DC13381BBDF1F300A73687 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7DC13371BBDF1F300A73687 /* TabBarController.swift */; };
+		F7DC13391BBDF1F300A73687 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7DC13371BBDF1F300A73687 /* TabBarController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +63,9 @@
 		F7DC13221BBA063100A73687 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		F7DC13231BBA063100A73687 /* Roboto-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Thin.ttf"; sourceTree = "<group>"; };
 		F7DC132A1BBA0F2500A73687 /* UdacityConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityConstants.swift; sourceTree = "<group>"; };
+		F7DC132F1BBCA9C500A73687 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		F7DC13311BBCAA9600A73687 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		F7DC13371BBDF1F300A73687 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F7DC13301BBCA9C500A73687 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,6 +90,7 @@
 		F7DC12E71BB8924900A73687 = {
 			isa = PBXGroup;
 			children = (
+				F7DC132F1BBCA9C500A73687 /* MapKit.framework */,
 				F7DC12F21BB8924900A73687 /* OnTheMap */,
 				F7DC13081BB8924A00A73687 /* OnTheMapTests */,
 				F7DC12F11BB8924900A73687 /* Products */,
@@ -142,6 +152,8 @@
 			isa = PBXGroup;
 			children = (
 				F7DC12F71BB8924900A73687 /* LoginViewController.swift */,
+				F7DC13311BBCAA9600A73687 /* MapViewController.swift */,
+				F7DC13371BBDF1F300A73687 /* TabBarController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -214,6 +226,11 @@
 				TargetAttributes = {
 					F7DC12EF1BB8924900A73687 = {
 						CreatedOnToolsVersion = 6.4;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					F7DC13041BB8924A00A73687 = {
 						CreatedOnToolsVersion = 6.4;
@@ -272,11 +289,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				F7DC12F81BB8924900A73687 /* LoginViewController.swift in Sources */,
+				F7DC13381BBDF1F300A73687 /* TabBarController.swift in Sources */,
 				F7DC131C1BB9438000A73687 /* Parse.swift in Sources */,
 				F7DC12F61BB8924900A73687 /* AppDelegate.swift in Sources */,
 				F7DC131F1BB94FA300A73687 /* StudentInformation.swift in Sources */,
 				F7DC13191BB9437000A73687 /* UdacityClient.swift in Sources */,
 				F7DC132B1BBA0F2500A73687 /* UdacityConstants.swift in Sources */,
+				F7DC13321BBCAA9600A73687 /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -285,11 +304,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				F7DC132E1BBA21B500A73687 /* LoginViewController.swift in Sources */,
+				F7DC13391BBDF1F300A73687 /* TabBarController.swift in Sources */,
 				F7DC13201BB94FA300A73687 /* StudentInformation.swift in Sources */,
 				F7DC132C1BBA0F2500A73687 /* UdacityConstants.swift in Sources */,
 				F7DC130C1BB8924A00A73687 /* OnTheMapTests.swift in Sources */,
 				F7DC131D1BB9438000A73687 /* Parse.swift in Sources */,
 				F7DC131A1BB9437000A73687 /* UdacityClient.swift in Sources */,
+				F7DC13331BBCAA9600A73687 /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -477,6 +498,7 @@
 				F7DC13111BB8924A00A73687 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F7DC13121BB8924A00A73687 /* Build configuration list for PBXNativeTarget "OnTheMapTests" */ = {
 			isa = XCConfigurationList;
@@ -485,6 +507,7 @@
 				F7DC13141BB8924A00A73687 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

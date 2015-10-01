@@ -63,7 +63,7 @@ class UdacityClient : NSObject {
     
     func getUserData(completionHandler: (success: Bool, userID: Int?, errorString: String?) -> Void) {
         println("In getUserID")
-        taskForGETMethod(Methods.UserWithID) { result, error in
+        taskForGETMethod(Methods.UserWithID) { (result, error) in
             
             /* 3. Send the desired value(s) to completion handler */
             if let error = error {
@@ -76,6 +76,17 @@ class UdacityClient : NSObject {
                     println("\(result)")
                     completionHandler(success: false, userID: nil, errorString: "Get User Data Failed (Parsing)")
                 }
+            }
+        }
+    }
+    
+    func logout(completionHandler: (success: Bool, errorString: String?) -> Void) {
+        println("In logout")
+        taskForDELETEMethod("session") { (result, error) in
+            if let error = error {
+                completionHandler(success: false, errorString: error.localizedDescription)
+            } else {
+                completionHandler(success: true, errorString: nil)
             }
         }
     }
@@ -117,6 +128,43 @@ class UdacityClient : NSObject {
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.HTTPBody = NSJSONSerialization.dataWithJSONObject(jsonBody, options: nil, error: &jsonifyError)
+        
+        /* 4. Make the request */
+        let task = session.dataTaskWithRequest(request) {data, response, downloadError in
+            
+            /* 5/6. Parse the data and use the data (happens in completion handler) */
+            let newData = data.subdataWithRange(NSMakeRange(5, data.length - 5)) /* subset response data! */
+            if let error = downloadError {
+                let newError = UdacityClient.errorForData(newData, response: response, error: error)
+                completionHandler(result: nil, error: downloadError)
+            } else {
+                UdacityClient.parseJSONWithCompletionHandler(newData, completionHandler: completionHandler)
+            }
+        }
+        
+        /* 7. Start the request */
+        task.resume()
+        
+        return task
+    }
+    
+    func taskForDELETEMethod(method: String, completionHandler: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
+        println("in taskForDELETEMethod")
+        /* 2/3. Build the URL and configure the request */
+        let urlString = Constants.BaseURLSecure + method
+        let url = NSURL(string: urlString)!
+        let request = NSMutableURLRequest(URL: url)
+        var jsonifyError: NSError? = nil
+        request.HTTPMethod = "DELETE"
+        
+        var xsrfCookie: NSHTTPCookie? = nil
+        let sharedCookieStorage = NSHTTPCookieStorage.sharedHTTPCookieStorage()
+        for cookie in sharedCookieStorage.cookies as! [NSHTTPCookie] {
+            if cookie.name == "XSRF-TOKEN" { xsrfCookie = cookie }
+        }
+        if let xsrfCookie = xsrfCookie {
+            request.setValue(xsrfCookie.value!, forHTTPHeaderField: "X-XSRF-TOKEN")
+        }
         
         /* 4. Make the request */
         let task = session.dataTaskWithRequest(request) {data, response, downloadError in

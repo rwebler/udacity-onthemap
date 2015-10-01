@@ -38,7 +38,7 @@ class LoginViewController: UIViewController {
     func completeLogin() {
         dispatch_async(dispatch_get_main_queue(), {
             self.loginMessageLabel.text = "Logged in to Udacity"
-            let controller = self.storyboard!.instantiateViewControllerWithIdentifier("ManagerNavigationController") as! UINavigationController
+            let controller = self.storyboard!.instantiateViewControllerWithIdentifier("MapNavigationController") as! UINavigationController
             self.presentViewController(controller, animated: true, completion: nil)
         })
     }
@@ -46,14 +46,15 @@ class LoginViewController: UIViewController {
     func displayError(errorString: String?) {
         dispatch_async(dispatch_get_main_queue(), {
             if let errorString = errorString {
+                
                 //display alert with error message
                 self.loginMessageLabel.text = "Login to Udacity"
                 var alert = UIAlertController(title: "Login Failed", message: errorString, preferredStyle: UIAlertControllerStyle.Alert)
                 alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.Default, handler: nil))
                 self.presentViewController(alert, animated: true, completion: nil)
-                let animation = CABasicAnimation(keyPath: "position")
                 
                 // shake the view
+                let animation = CABasicAnimation(keyPath: "position")
                 animation.duration = 0.07
                 animation.repeatCount = 4
                 animation.autoreverses = true
