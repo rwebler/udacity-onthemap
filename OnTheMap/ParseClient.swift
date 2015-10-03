@@ -13,6 +13,8 @@ class ParseClient : NSObject {
     /* Shared session */
     var session: NSURLSession
     
+    var studentInformationList: [StudentInformation]?
+    
     override init() {
         session = NSURLSession.sharedSession()
         super.init()
@@ -26,7 +28,8 @@ class ParseClient : NSObject {
                 println(JSONResult)
                 if let results = JSONResult.valueForKey("results") as? [[String : AnyObject]] {
                     println(results)
-                    completionHandler(success: true, studentInfo: StudentInformation.studentInfoFromResults(results), error: nil)
+                    self.studentInformationList = StudentInformation.studentInfoFromResults(results)
+                    completionHandler(success: true, studentInfo: self.studentInformationList, error: nil)
                 }
             }
         }

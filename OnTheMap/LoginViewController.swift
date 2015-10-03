@@ -38,7 +38,7 @@ class LoginViewController: UIViewController {
     func completeLogin() {
         dispatch_async(dispatch_get_main_queue(), {
             self.loginMessageLabel.text = "Logged in to Udacity"
-            let controller = self.storyboard!.instantiateViewControllerWithIdentifier("MapNavigationController") as! UINavigationController
+            let controller = self.storyboard!.instantiateViewControllerWithIdentifier("StudentLocationsNavigationController") as! UINavigationController
             self.presentViewController(controller, animated: true, completion: nil)
         })
     }

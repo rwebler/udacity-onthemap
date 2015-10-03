@@ -16,6 +16,8 @@ class UdacityClient : NSObject {
     /* Authentication state */
     var sessionID : String? = nil
     var userKey : String? = nil
+    var userFirstName : String? = nil
+    var userLastName : String? = nil
     
     override init() {
         session = NSURLSession.sharedSession()
@@ -34,8 +36,15 @@ class UdacityClient : NSObject {
                 if let userKey = userKey {
                     self.userKey = userKey
                 }
+                self.getUserData() { (success, userData, errorString) in
+                    if success {
+                        println(userData)
+                    }
+                    completionHandler(success: success, errorString: errorString)
+                }
+            } else {
+                completionHandler(success: success, errorString: errorString)
             }
-            completionHandler(success: success, errorString: errorString)
         }
     }
     
@@ -61,20 +70,20 @@ class UdacityClient : NSObject {
         }
     }
     
-    func getUserData(completionHandler: (success: Bool, userID: Int?, errorString: String?) -> Void) {
-        println("In getUserID")
-        taskForGETMethod(Methods.UserWithID) { (result, error) in
+    func getUserData(completionHandler: (success: Bool, userData: [String: AnyObject]?, errorString: String?) -> Void) {
+        println("In getUserData")
+        taskForGETMethod(UdacityClient.substituteKeyInMethod(Methods.UserWithID, key: ParameterKeys.UserID, value: userKey!)!) { (result, error) in
             
             /* 3. Send the desired value(s) to completion handler */
             if let error = error {
-                completionHandler(success: false, userID: nil, errorString: "Get User Data Failed (Request)")
+                completionHandler(success: false, userData: nil, errorString: "Get User Data Failed (Request)")
             } else {
-                if let sessDict = result.valueForKey(JSONResponseKeys.SessionDictionary) as? [String: AnyObject] {
-                    println("\(sessDict)")
-                    completionHandler(success: true, userID: nil, errorString: nil)
+                if let userDict = result.valueForKey(JSONResponseKeys.UserDataDictionary) as? [String: AnyObject] {
+                    println("\(userDict)")
+                    completionHandler(success: true, userData: userDict, errorString: nil)
                 } else {
                     println("\(result)")
-                    completionHandler(success: false, userID: nil, errorString: "Get User Data Failed (Parsing)")
+                    completionHandler(success: false, userData: nil, errorString: "Get User Data Failed (Parsing)")
                 }
             }
         }
@@ -186,7 +195,7 @@ class UdacityClient : NSObject {
     }
     
     /* Helper: Substitute the key for the value that is contained within the method name */
-    class func subtituteKeyInMethod(method: String, key: String, value: String) -> String? {
+    class func substituteKeyInMethod(method: String, key: String, value: String) -> String? {
         if method.rangeOfString("{\(key)}") != nil {
             return method.stringByReplacingOccurrencesOfString("{\(key)}", withString: value)
         } else {

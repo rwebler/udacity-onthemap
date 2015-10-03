@@ -11,6 +11,8 @@
         <mutableArray key="Roboto-Regular.ttf">
             <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -123,10 +125,57 @@
             </objects>
             <point key="canvasLocation" x="1204" y="-258"/>
         </scene>
+        <!--List-->
+        <scene sceneID="OPo-xc-h18">
+            <objects>
+                <tableViewController id="gbw-ie-4fI" customClass="ListViewController" customModule="OnTheMap" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="gHU-Rr-GMx">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="OneTheMapTableViewCell" textLabel="0u7-MR-n6n" detailTextLabel="uP0-kv-3iu" imageView="BdM-9U-lGn" style="IBUITableViewCellStyleSubtitle" id="FJp-64-Der">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FJp-64-Der" id="4ee-Kc-vTR">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0u7-MR-n6n">
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="16"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="uP0-kv-3iu">
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="11"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="Pin" id="BdM-9U-lGn">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </imageView>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="gbw-ie-4fI" id="eEG-xd-zTO"/>
+                            <outlet property="delegate" destination="gbw-ie-4fI" id="SxB-Kq-5ei"/>
+                        </connections>
+                    </tableView>
+                    <tabBarItem key="tabBarItem" title="List" image="List" id="chB-gF-YsZ"/>
+                    <connections>
+                        <outlet property="linksTableView" destination="gHU-Rr-GMx" id="nac-CT-GvG"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mWs-BF-d0O" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1204" y="478"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="PaO-wT-Gzh">
             <objects>
-                <navigationController storyboardIdentifier="MapNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="bCY-fP-y4j" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="StudentLocationsNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="bCY-fP-y4j" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="mON-cz-ml4">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -140,30 +189,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QAi-JV-pEG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-263" y="93"/>
-        </scene>
-        <!--List-->
-        <scene sceneID="vio-JT-Jfv">
-            <objects>
-                <viewController id="OfA-mv-pko" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="7gv-XD-Zma"/>
-                        <viewControllerLayoutGuide type="bottom" id="yy1-qA-Fwq"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="aLg-Gx-fe9">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="List" image="List" id="khh-B5-J3f"/>
-                    <toolbarItems>
-                        <barButtonItem title="Item" id="dgb-rC-EQw"/>
-                        <barButtonItem title="Item" id="87h-V3-VlN"/>
-                    </toolbarItems>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="gOM-kU-dhh" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1204" y="424"/>
         </scene>
         <!--On The Map-->
         <scene sceneID="vgx-7Q-lec">
@@ -184,7 +209,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="9Vj-Ru-kgw" kind="relationship" relationship="viewControllers" id="jT4-Fc-Eem"/>
-                        <segue destination="OfA-mv-pko" kind="relationship" relationship="viewControllers" id="s3M-b3-Vdv"/>
+                        <segue destination="gbw-ie-4fI" kind="relationship" relationship="viewControllers" id="h8p-qi-zfU"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ohl-Dn-vrg" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -195,6 +220,7 @@
     <resources>
         <image name="List" width="32" height="32"/>
         <image name="Map" width="32" height="32"/>
+        <image name="Pin" width="32" height="32"/>
         <image name="Udacity" width="256" height="256"/>
     </resources>
 </document>

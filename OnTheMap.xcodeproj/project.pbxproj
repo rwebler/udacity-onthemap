@@ -35,6 +35,10 @@
 		F7DC13391BBDF1F300A73687 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7DC13371BBDF1F300A73687 /* TabBarController.swift */; };
 		F7DC133C1BBDF7AE00A73687 /* ParseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7DC133B1BBDF7AE00A73687 /* ParseConstants.swift */; };
 		F7DC133D1BBDF7AE00A73687 /* ParseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7DC133B1BBDF7AE00A73687 /* ParseConstants.swift */; };
+		F7DC133F1BC0412200A73687 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7DC133E1BC0412200A73687 /* ListViewController.swift */; };
+		F7DC13401BC0412200A73687 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7DC133E1BC0412200A73687 /* ListViewController.swift */; };
+		F7DC13421BC075ED00A73687 /* OnTheMapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7DC13411BC075ED00A73687 /* OnTheMapController.swift */; };
+		F7DC13431BC075ED00A73687 /* OnTheMapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7DC13411BC075ED00A73687 /* OnTheMapController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +73,8 @@
 		F7DC13311BBCAA9600A73687 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		F7DC13371BBDF1F300A73687 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		F7DC133B1BBDF7AE00A73687 /* ParseConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseConstants.swift; sourceTree = "<group>"; };
+		F7DC133E1BC0412200A73687 /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
+		F7DC13411BC075ED00A73687 /* OnTheMapController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnTheMapController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +163,8 @@
 				F7DC12F71BB8924900A73687 /* LoginViewController.swift */,
 				F7DC13311BBCAA9600A73687 /* MapViewController.swift */,
 				F7DC13371BBDF1F300A73687 /* TabBarController.swift */,
+				F7DC133E1BC0412200A73687 /* ListViewController.swift */,
+				F7DC13411BC075ED00A73687 /* OnTheMapController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -303,11 +311,13 @@
 				F7DC12F81BB8924900A73687 /* LoginViewController.swift in Sources */,
 				F7DC13381BBDF1F300A73687 /* TabBarController.swift in Sources */,
 				F7DC131C1BB9438000A73687 /* ParseClient.swift in Sources */,
+				F7DC13421BC075ED00A73687 /* OnTheMapController.swift in Sources */,
 				F7DC12F61BB8924900A73687 /* AppDelegate.swift in Sources */,
 				F7DC131F1BB94FA300A73687 /* StudentInformation.swift in Sources */,
 				F7DC133C1BBDF7AE00A73687 /* ParseConstants.swift in Sources */,
 				F7DC13191BB9437000A73687 /* UdacityClient.swift in Sources */,
 				F7DC132B1BBA0F2500A73687 /* UdacityConstants.swift in Sources */,
+				F7DC133F1BC0412200A73687 /* ListViewController.swift in Sources */,
 				F7DC13321BBCAA9600A73687 /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -319,11 +329,13 @@
 				F7DC132E1BBA21B500A73687 /* LoginViewController.swift in Sources */,
 				F7DC13391BBDF1F300A73687 /* TabBarController.swift in Sources */,
 				F7DC13201BB94FA300A73687 /* StudentInformation.swift in Sources */,
+				F7DC13431BC075ED00A73687 /* OnTheMapController.swift in Sources */,
 				F7DC132C1BBA0F2500A73687 /* UdacityConstants.swift in Sources */,
 				F7DC130C1BB8924A00A73687 /* OnTheMapTests.swift in Sources */,
 				F7DC133D1BBDF7AE00A73687 /* ParseConstants.swift in Sources */,
 				F7DC131D1BB9438000A73687 /* ParseClient.swift in Sources */,
 				F7DC131A1BB9437000A73687 /* UdacityClient.swift in Sources */,
+				F7DC13401BC0412200A73687 /* ListViewController.swift in Sources */,
 				F7DC13331BBCAA9600A73687 /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

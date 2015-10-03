@@ -22,6 +22,7 @@ extension UdacityClient {
     struct ParameterKeys {
         static let AccessToken = "access_token"
         static let Query = "query"
+        static let UserID = "id"
     }
 
     struct JSONBodyKeys {
@@ -38,5 +39,8 @@ extension UdacityClient {
         static let SessId = "id"
         static let SessExpiration = "expiration"
         static let StatusMessage = ""
+        static let UserDataDictionary = "user"
+        static let UserFirstName = "first_name"
+        static let UserLastName = "last_name"
     }
 }

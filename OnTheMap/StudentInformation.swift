@@ -35,11 +35,10 @@ struct StudentInformation {
         var studentInfo = [StudentInformation]()
         
         for result in results {
-            studentInfo.append(StudentInformation(dictionary: result as! [String : AnyObject]))
+            studentInfo.append(StudentInformation(dictionary: result as [String : AnyObject]))
         }
         
         return studentInfo
     }
 }
-
 

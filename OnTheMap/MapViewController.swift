@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class MapViewController : UIViewController, MKMapViewDelegate {
+class MapViewController : UIViewController, MKMapViewDelegate, OnTheMapController {
     
     @IBOutlet weak var mapView: MKMapView!
     
@@ -18,10 +18,13 @@ class MapViewController : UIViewController, MKMapViewDelegate {
     }
     
     override func viewDidLoad() {
+
         super.viewDidLoad()
-        
         mapView.delegate = self
-        
+        reload()
+    }
+    
+    func reload() {
         ParseClient.sharedInstance().getStudentInfo({(success, studentInfo, error) in
             if success {
                 // We will create an MKPointAnnotation for each dictionary in "locations". The
@@ -68,6 +71,10 @@ class MapViewController : UIViewController, MKMapViewDelegate {
                 println(error)
             }
         })
+    }
+    
+    func add() {
+        
     }
     
     // Here we create a view with a "right callout accessory view". You might choose to look into other

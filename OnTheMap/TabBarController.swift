@@ -20,10 +20,14 @@ class TabBarController: UITabBarController {
 
     func reloadPins(sender:UIButton) {
         println("reload pressed")
+        let selectedViewController = self.selectedViewController as! OnTheMapController
+        selectedViewController.reload()
     }
 
     func addPin (sender:UIButton) {
         println("add pressed")
+        let selectedViewController = self.selectedViewController as! OnTheMapController
+        selectedViewController.add()
     }
     
     @IBAction func doLogout(sender: UIBarButtonItem) {
