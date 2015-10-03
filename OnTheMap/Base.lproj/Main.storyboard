@@ -165,11 +165,11 @@
             </objects>
             <point key="canvasLocation" x="1204" y="424"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--On The Map-->
         <scene sceneID="vgx-7Q-lec">
             <objects>
                 <tabBarController id="kKo-Ji-S7n" customClass="TabBarController" customModule="OnTheMap" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="osY-K3-GkA">
+                    <navigationItem key="navigationItem" title="On The Map" id="osY-K3-GkA">
                         <barButtonItem key="leftBarButtonItem" tag="1" title="Logout" id="oC2-Yd-faJ">
                             <connections>
                                 <action selector="doLogout:" destination="kKo-Ji-S7n" id="JeN-mj-z9r"/>

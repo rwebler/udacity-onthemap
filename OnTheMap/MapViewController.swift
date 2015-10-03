@@ -9,7 +9,8 @@
 import UIKit
 import MapKit
 
-class MapViewController : UIViewController, MKMapViewDelegate, UITabBarDelegate {
+class MapViewController : UIViewController, MKMapViewDelegate {
+    
     @IBOutlet weak var mapView: MKMapView!
     
     override func viewDidAppear(animated: Bool) {
@@ -18,6 +19,8 @@ class MapViewController : UIViewController, MKMapViewDelegate, UITabBarDelegate 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        mapView.delegate = self
         
         ParseClient.sharedInstance().getStudentInfo({(success, studentInfo, error) in
             if success {
@@ -50,6 +53,8 @@ class MapViewController : UIViewController, MKMapViewDelegate, UITabBarDelegate 
                         annotation.title = "\(first) \(last)"
                         annotation.subtitle = mediaURL
                         
+                        println(annotation)
+                        
                         // Finally we place the annotation in an array of annotations.
                         annotations.append(annotation)
                     }
@@ -60,6 +65,7 @@ class MapViewController : UIViewController, MKMapViewDelegate, UITabBarDelegate 
                     })
                 }
             } else {
+                println(error)
             }
         })
     }
@@ -69,22 +75,30 @@ class MapViewController : UIViewController, MKMapViewDelegate, UITabBarDelegate 
     // method in TableViewDataSource.
     func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
         
+        println("In viewForAnnotation")
+        
         let reuseId = "pin"
         
         var pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId) as? MKPinAnnotationView
         
-        pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
-        pinView!.canShowCallout = true
-        pinView!.pinColor = .Red
-        pinView!.rightCalloutAccessoryView = UIButton.buttonWithType(.DetailDisclosure) as! UIButton
-        pinView!.annotation = annotation
+        if pinView == nil {
+            pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+            pinView!.canShowCallout = true
+            pinView!.pinColor = .Red
+            pinView!.rightCalloutAccessoryView = UIButton.buttonWithType(.DetailDisclosure) as! UIButton
+        } else {
+            pinView!.annotation = annotation
+        }
         
         return pinView
     }
     
+    
     // This delegate method is implemented to respond to taps. It opens the system browser
     // to the URL specified in the annotationViews subtitle property.
     func mapView(mapView: MKMapView!, annotationView: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        
+        println("In tap callout")
         
         if control == annotationView.rightCalloutAccessoryView {
             let app = UIApplication.sharedApplication()

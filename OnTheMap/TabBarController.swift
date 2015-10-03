@@ -9,6 +9,23 @@
 import UIKit
 
 class TabBarController: UITabBarController {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        var rightPinBarButtonItem:UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Pin"), style: .Plain, target: self, action: "addPin:")
+        var rightReloadBarButtonItem:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Refresh, target: self, action: "reloadPins:")
+        self.navigationItem.setRightBarButtonItems([rightReloadBarButtonItem, rightPinBarButtonItem], animated: true)
+    }
+
+    func reloadPins(sender:UIButton) {
+        println("reload pressed")
+    }
+
+    func addPin (sender:UIButton) {
+        println("add pressed")
+    }
+    
     @IBAction func doLogout(sender: UIBarButtonItem) {
         println("Logout")
         UdacityClient.sharedInstance().logout({ (success, errorString) in
