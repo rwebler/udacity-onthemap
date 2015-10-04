@@ -41,6 +41,12 @@
 		F7DC13431BC075ED00A73687 /* OnTheMapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7DC13411BC075ED00A73687 /* OnTheMapController.swift */; };
 		F7DC13451BC087C100A73687 /* InformationPostingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7DC13441BC087C100A73687 /* InformationPostingViewController.swift */; };
 		F7DC13461BC087C100A73687 /* InformationPostingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7DC13441BC087C100A73687 /* InformationPostingViewController.swift */; };
+		F7DC13551BC0DF2500A73687 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7DC13541BC0DF2500A73687 /* FBSDKCoreKit.framework */; };
+		F7DC13561BC0DF2500A73687 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7DC13541BC0DF2500A73687 /* FBSDKCoreKit.framework */; };
+		F7DC13581BC0DF5100A73687 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7DC13571BC0DF5100A73687 /* FBSDKLoginKit.framework */; };
+		F7DC13591BC0DF5100A73687 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7DC13571BC0DF5100A73687 /* FBSDKLoginKit.framework */; };
+		F7DC135B1BC0DF5D00A73687 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7DC135A1BC0DF5D00A73687 /* Bolts.framework */; };
+		F7DC135C1BC0DF5D00A73687 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7DC135A1BC0DF5D00A73687 /* Bolts.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +84,10 @@
 		F7DC133E1BC0412200A73687 /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		F7DC13411BC075ED00A73687 /* OnTheMapController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnTheMapController.swift; sourceTree = "<group>"; };
 		F7DC13441BC087C100A73687 /* InformationPostingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InformationPostingViewController.swift; sourceTree = "<group>"; };
+		F7DC13501BC0DC8100A73687 /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
+		F7DC13541BC0DF2500A73687 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = "../../Downloads/FacebookSDKs-iOS-20150813/FBSDKCoreKit.framework"; sourceTree = "<group>"; };
+		F7DC13571BC0DF5100A73687 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "../../Downloads/FacebookSDKs-iOS-20150813/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
+		F7DC135A1BC0DF5D00A73687 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "../../Downloads/FacebookSDKs-iOS-20150813/Bolts.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +96,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				F7DC13301BBCA9C500A73687 /* MapKit.framework in Frameworks */,
+				F7DC13551BC0DF2500A73687 /* FBSDKCoreKit.framework in Frameworks */,
+				F7DC13581BC0DF5100A73687 /* FBSDKLoginKit.framework in Frameworks */,
+				F7DC135B1BC0DF5D00A73687 /* Bolts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -93,6 +106,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F7DC135C1BC0DF5D00A73687 /* Bolts.framework in Frameworks */,
+				F7DC13591BC0DF5100A73687 /* FBSDKLoginKit.framework in Frameworks */,
+				F7DC13561BC0DF2500A73687 /* FBSDKCoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -106,6 +122,9 @@
 				F7DC12F21BB8924900A73687 /* OnTheMap */,
 				F7DC13081BB8924A00A73687 /* OnTheMapTests */,
 				F7DC12F11BB8924900A73687 /* Products */,
+				F7DC135A1BC0DF5D00A73687 /* Bolts.framework */,
+				F7DC13571BC0DF5100A73687 /* FBSDKLoginKit.framework */,
+				F7DC13541BC0DF2500A73687 /* FBSDKCoreKit.framework */,
 			);
 			sourceTree = "<group>";
 		};
@@ -125,6 +144,7 @@
 				F7DC13171BB9428100A73687 /* Model */,
 				F7DC13161BB9427200A73687 /* Controller */,
 				F7DC12F31BB8924900A73687 /* Supporting Files */,
+				F7DC13501BC0DC8100A73687 /* Bridging-Header.h */,
 			);
 			path = OnTheMap;
 			sourceTree = "<group>";
@@ -461,9 +481,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"/Users/scalablepath/Downloads/FacebookSDKs-iOS-20150910",
+					"/Users/scalablepath/Downloads/FacebookSDKs-iOS-20150813",
+				);
 				INFOPLIST_FILE = OnTheMap/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "OnTheMap/Bridging-Header.h";
 			};
 			name = Debug;
 		};
@@ -471,9 +499,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"/Users/scalablepath/Downloads/FacebookSDKs-iOS-20150910",
+					"/Users/scalablepath/Downloads/FacebookSDKs-iOS-20150813",
+				);
 				INFOPLIST_FILE = OnTheMap/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "OnTheMap/Bridging-Header.h";
 			};
 			name = Release;
 		};
@@ -484,6 +520,9 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"/Users/scalablepath/Downloads/FacebookSDKs-iOS-20150910",
+					"/Users/scalablepath/Downloads/FacebookSDKs-iOS-20150813",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -503,6 +542,9 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"/Users/scalablepath/Downloads/FacebookSDKs-iOS-20150910",
+					"/Users/scalablepath/Downloads/FacebookSDKs-iOS-20150813",
 				);
 				INFOPLIST_FILE = OnTheMapTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";

@@ -46,31 +46,29 @@ class TabBarController: UITabBarController {
     @IBAction func doLogout(sender: UIBarButtonItem) {
         println("Logout")
         UdacityClient.sharedInstance().logout({ (success, errorString) in
-            if success {
-                self.completeLogout()
-            } else {
-                self.displayError(errorString)
-            }
+            dispatch_async(dispatch_get_main_queue(), {
+                if success {
+                    self.completeLogout()
+                } else {
+                    self.displayError(errorString)
+                }
+            })
         })
     }
     
     func completeLogout() {
-        dispatch_async(dispatch_get_main_queue(), {
-            let controller = self.storyboard!.instantiateViewControllerWithIdentifier("LoginViewController") as! UIViewController
-            self.presentViewController(controller, animated: true, completion: nil)
-        })
+        let controller = storyboard!.instantiateViewControllerWithIdentifier("LoginViewController") as! UIViewController
+        presentViewController(controller, animated: true, completion: nil)
     }
     
     func displayError(errorString: String?) {
-        dispatch_async(dispatch_get_main_queue(), {
-            if let errorString = errorString {
-                
-                //display alert with error message
-                var alert = UIAlertController(title: "Logout Failed", message: errorString, preferredStyle: UIAlertControllerStyle.Alert)
-                alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.Default, handler: nil))
-                self.presentViewController(alert, animated: true, completion: nil)
-                
-            }
-        })
+        if let errorString = errorString {
+            
+            //display alert with error message
+            var alert = UIAlertController(title: "Logout Failed", message: errorString, preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.Default, handler: nil))
+            presentViewController(alert, animated: true, completion: nil)
+            
+        }
     }
 }

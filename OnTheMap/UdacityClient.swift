@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import FBSDKLoginKit
 
 class UdacityClient : NSObject {
     
@@ -19,6 +20,7 @@ class UdacityClient : NSObject {
     var objectID : String? = nil
     var userFirstName : String? = nil
     var userLastName : String? = nil
+    var facebookAccessToken : String? = nil
     
     override init() {
         session = NSURLSession.sharedSession()
@@ -35,7 +37,9 @@ class UdacityClient : NSObject {
         
         println("In authenticate")
         
-        getSessionID(username, password: password) { (success, sessionID, userKey, errorString) in
+        let jsonBody = ["udacity": [JSONBodyKeys.Username: username, JSONBodyKeys.Password: password]]
+        
+        getSessionID(jsonBody) { (success, sessionID, userKey, errorString) in
             if success {
                 if let sessionID = sessionID {
                     self.sessionID = sessionID
@@ -59,9 +63,38 @@ class UdacityClient : NSObject {
         }
     }
     
-    func getSessionID (username: String, password: String, completionHandler: (success: Bool, sessionID: String?, userKey: String?, errorString: String?) -> Void) {
+    func authenticateWithFacebook(accessToken: String, completionHandler: (success: Bool, errorString: String?) -> Void) {
+        println("In authenticate with FB")
+        
+        let jsonBody = ["facebook_mobile": ["access_token": accessToken]]
+        getSessionID(jsonBody) { (success, sessionID, userKey, errorString) in
+            if success {
+                self.facebookAccessToken = accessToken
+                if let sessionID = sessionID {
+                    self.sessionID = sessionID
+                }
+                if let userKey = userKey {
+                    self.userKey = userKey
+                }
+                self.getUserData() { (success, userData, errorString) in
+                    if success {
+                        println(userData)
+                        if let userData = userData {
+                            self.userLastName = userData["last_name"] as? String
+                            self.userFirstName = userData["first_name"] as? String
+                        }
+                    }
+                    completionHandler(success: success, errorString: errorString)
+                }
+            } else {
+                completionHandler(success: success, errorString: errorString)
+            }
+        }
+    }
+    
+    func getSessionID (jsonBody: [String: AnyObject], completionHandler: (success: Bool, sessionID: String?, userKey: String?, errorString: String?) -> Void) {
         println("In login")
-        taskForPOSTMethod(Methods.Session, jsonBody: ["udacity": [JSONBodyKeys.Username: username, JSONBodyKeys.Password: password]]) { result, error in
+        taskForPOSTMethod(Methods.Session, jsonBody: jsonBody) { result, error in
             
             /* 3. Send the desired value(s) to completion handler */
             if let error = error {
@@ -102,12 +135,18 @@ class UdacityClient : NSObject {
     
     func logout(completionHandler: (success: Bool, errorString: String?) -> Void) {
         println("In logout")
-        taskForDELETEMethod("session") { (result, error) in
-            if let error = error {
-                completionHandler(success: false, errorString: error.localizedDescription)
-            } else {
-                completionHandler(success: true, errorString: nil)
+        if facebookAccessToken == nil {
+            taskForDELETEMethod("session") { (result, error) in
+                if let error = error {
+                    completionHandler(success: false, errorString: error.localizedDescription)
+                } else {
+                    completionHandler(success: true, errorString: nil)
+                }
             }
+        } else {
+            let loginManager = FBSDKLoginManager()
+            loginManager.logOut()
+            completionHandler(success: true, errorString: nil)
         }
     }
     
