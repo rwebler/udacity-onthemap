@@ -40,7 +40,6 @@ extension UdacityClient {
         static let SessionDictionary = "session"
         static let SessId = "id"
         static let SessExpiration = "expiration"
-        static let StatusMessage = ""
         static let UserDataDictionary = "user"
         static let UserFirstName = "first_name"
         static let UserLastName = "last_name"

@@ -161,13 +161,11 @@ class UdacityClient : NSObject {
         /* 4. Make the request */
         let task = session.dataTaskWithRequest(request) {data, response, downloadError in
             
-            /* 5/6. Parse the data and use the data (happens in completion handler) */
-            let newData = data.subdataWithRange(NSMakeRange(5, data.length - 5)) /* subset response data! */
             if let error = downloadError {
-                let newError = UdacityClient.errorForData(newData, response: response, error: error)
-                completionHandler(result: nil, error: downloadError)
+                completionHandler(result: nil, error: error)
             } else {
-                UdacityClient.parseJSONWithCompletionHandler(newData, completionHandler: completionHandler)
+                /* 5/6. Parse the data and use the data (happens in completion handler) */
+                UdacityClient.parseJSONWithCompletionHandler(data, completionHandler: completionHandler)
             }
         }
         
@@ -192,13 +190,12 @@ class UdacityClient : NSObject {
         /* 4. Make the request */
         let task = session.dataTaskWithRequest(request) {data, response, downloadError in
             
-            /* 5/6. Parse the data and use the data (happens in completion handler) */
-            let newData = data.subdataWithRange(NSMakeRange(5, data.length - 5)) /* subset response data! */
+            println(request)
             if let error = downloadError {
-                let newError = UdacityClient.errorForData(newData, response: response, error: error)
-                completionHandler(result: nil, error: downloadError)
+                completionHandler(result: nil, error: error)
             } else {
-                UdacityClient.parseJSONWithCompletionHandler(newData, completionHandler: completionHandler)
+                /* 5/6. Parse the data and use the data (happens in completion handler) */
+                UdacityClient.parseJSONWithCompletionHandler(data, completionHandler: completionHandler)
             }
         }
         
@@ -229,13 +226,11 @@ class UdacityClient : NSObject {
         /* 4. Make the request */
         let task = session.dataTaskWithRequest(request) {data, response, downloadError in
             
-            /* 5/6. Parse the data and use the data (happens in completion handler) */
-            let newData = data.subdataWithRange(NSMakeRange(5, data.length - 5)) /* subset response data! */
             if let error = downloadError {
-                let newError = UdacityClient.errorForData(newData, response: response, error: error)
-                completionHandler(result: nil, error: downloadError)
+                completionHandler(result: nil, error: error)
             } else {
-                UdacityClient.parseJSONWithCompletionHandler(newData, completionHandler: completionHandler)
+                /* 5/6. Parse the data and use the data (happens in completion handler) */
+                UdacityClient.parseJSONWithCompletionHandler(data, completionHandler: completionHandler)
             }
         }
         
@@ -254,33 +249,23 @@ class UdacityClient : NSObject {
         }
     }
     
-    /* Helper: Given a response with error, see if a status_message is returned, otherwise return the previous error */
-    class func errorForData(data: NSData?, response: NSURLResponse?, error: NSError) -> NSError {
-        
-        if let parsedResult = NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments, error: nil) as? [String : AnyObject] {
-            
-            if let errorMessage = parsedResult[UdacityClient.JSONResponseKeys.StatusMessage] as? String {
-                
-                let userInfo = [NSLocalizedDescriptionKey : errorMessage]
-                
-                return NSError(domain: "Udacity Client Error", code: 1, userInfo: userInfo)
-            }
-        }
-        
-        return error
-    }
-    
     /* Helper: Given raw JSON, return a usable Foundation object */
-    class func parseJSONWithCompletionHandler(data: NSData, completionHandler: (result: AnyObject!, error: NSError?) -> Void) {
+    class func parseJSONWithCompletionHandler(data: NSData?, completionHandler: (result: AnyObject!, error: NSError?) -> Void) {
         
+        println("In parseJSONWithCompletionHandler \(data)")
         var parsingError: NSError? = nil
         
-        let parsedResult: AnyObject? = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments, error: &parsingError)
-        
-        if let error = parsingError {
-            completionHandler(result: nil, error: error)
+        if let data = data {
+            let newData = data.subdataWithRange(NSMakeRange(5, data.length - 5)) /* subset response data! */
+            let parsedResult: AnyObject? = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments, error: &parsingError)
+            
+            if let error = parsingError {
+                completionHandler(result: nil, error: error)
+            } else {
+                completionHandler(result: parsedResult, error: nil)
+            }
         } else {
-            completionHandler(result: parsedResult, error: nil)
+            completionHandler(result: nil, error: NSError(domain: "Internet Connection Error", code: 1, userInfo: nil))
         }
     }
     

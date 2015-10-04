@@ -30,6 +30,8 @@ class ParseClient : NSObject {
                     println(results)
                     self.studentInformationList = StudentInformation.studentInfoFromResults(results, userKey: UdacityClient.sharedInstance().userKey!)
                     completionHandler(success: true, studentInfo: self.studentInformationList, error: nil)
+                } else {
+                    completionHandler(success: false, studentInfo: nil, error: "Invalid result")
                 }
             }
         }
@@ -78,8 +80,7 @@ class ParseClient : NSObject {
             
             /* 5/6. Parse the data and use the data (happens in completion handler) */
             if let error = downloadError {
-                let newError = ParseClient.errorForData(data, response: response, error: error)
-                completionHandler(result: nil, error: downloadError)
+                completionHandler(result: nil, error: error)
             } else {
                 ParseClient.parseJSONWithCompletionHandler(data, completionHandler: completionHandler)
             }
@@ -111,8 +112,7 @@ class ParseClient : NSObject {
             
             /* 5/6. Parse the data and use the data (happens in completion handler) */
             if let error = downloadError {
-                let newError = ParseClient.errorForData(data, response: response, error: error)
-                completionHandler(result: nil, error: downloadError)
+                completionHandler(result: nil, error: error)
             } else {
                 ParseClient.parseJSONWithCompletionHandler(data, completionHandler: completionHandler)
             }
@@ -143,8 +143,7 @@ class ParseClient : NSObject {
             
             /* 5/6. Parse the data and use the data (happens in completion handler) */
             if let error = downloadError {
-                let newError = ParseClient.errorForData(data, response: response, error: error)
-                completionHandler(result: nil, error: downloadError)
+                completionHandler(result: nil, error: error)
             } else {
                 ParseClient.parseJSONWithCompletionHandler(data, completionHandler: completionHandler)
             }
@@ -165,33 +164,21 @@ class ParseClient : NSObject {
         }
     }
     
-    /* Helper: Given a response with error, see if a status_message is returned, otherwise return the previous error */
-    class func errorForData(data: NSData?, response: NSURLResponse?, error: NSError) -> NSError {
-        
-        if let parsedResult = NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments, error: nil) as? [String : AnyObject] {
-            
-            if let errorMessage = parsedResult[UdacityClient.JSONResponseKeys.StatusMessage] as? String {
-                
-                let userInfo = [NSLocalizedDescriptionKey : errorMessage]
-                
-                return NSError(domain: "Parse Client Error", code: 1, userInfo: userInfo)
-            }
-        }
-        
-        return error
-    }
-    
     /* Helper: Given raw JSON, return a usable Foundation object */
-    class func parseJSONWithCompletionHandler(data: NSData, completionHandler: (result: AnyObject!, error: NSError?) -> Void) {
+    class func parseJSONWithCompletionHandler(data: NSData?, completionHandler: (result: AnyObject!, error: NSError?) -> Void) {
         
         var parsingError: NSError? = nil
         
-        let parsedResult: AnyObject? = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments, error: &parsingError)
-        
-        if let error = parsingError {
-            completionHandler(result: nil, error: error)
+        if let data = data {
+            let parsedResult: AnyObject? = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments, error: &parsingError)
+            
+            if let error = parsingError {
+                completionHandler(result: nil, error: error)
+            } else {
+                completionHandler(result: parsedResult, error: nil)
+            }
         } else {
-            completionHandler(result: parsedResult, error: nil)
+            completionHandler(result: nil, error: NSError(domain: "Internet Connection Error", code: 1, userInfo: nil))
         }
     }
     
