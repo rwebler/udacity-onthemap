@@ -16,12 +16,19 @@ class UdacityClient : NSObject {
     /* Authentication state */
     var sessionID : String? = nil
     var userKey : String? = nil
+    var objectID : String? = nil
     var userFirstName : String? = nil
     var userLastName : String? = nil
     
     override init() {
         session = NSURLSession.sharedSession()
         super.init()
+    }
+    
+    func updateObjectID(objectID: String) {
+        if self.objectID == nil {
+            self.objectID = objectID
+        }
     }
     
     func authenticate(username: String, password: String, completionHandler: (success: Bool, errorString: String?) -> Void) {

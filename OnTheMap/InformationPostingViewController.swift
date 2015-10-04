@@ -32,6 +32,10 @@ class InformatonPostingViewController : UIViewController {
         
         infoActivityIndicator.stopAnimating()
         
+        info["firstName"] = UdacityClient.sharedInstance().userFirstName
+        info["lastName"] = UdacityClient.sharedInstance().userLastName
+        info["uniqueKey"] = UdacityClient.sharedInstance().userKey
+        
         infoLabel.text = "Where are you studying today?"
         infoTextField.placeholder = "Type a city or location"
         infoButton.setTitle("Submit", forState: .Normal)
@@ -79,16 +83,13 @@ class InformatonPostingViewController : UIViewController {
 
         infoActivityIndicator.startAnimating()
         
-        info["firstName"] = UdacityClient.sharedInstance().userFirstName
-        info["lastName"] = UdacityClient.sharedInstance().userLastName
-        info["uniqueKey"] = UdacityClient.sharedInstance().userKey
         info["mediaURL"] = infoTextField.text
         
         ParseClient.sharedInstance().postStudentInfo(info) {(success, error) in
             if success {
-                //self.dismissViewControllerAnimated(true, completion: {});
+                self.dismissViewControllerAnimated(true, completion: {});
             } else {
-                
+                println(error)
             }
         }
     }

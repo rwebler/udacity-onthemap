@@ -30,12 +30,20 @@ struct StudentInformation {
         longitude = dictionary[ParseClient.JSONResponseKeys.Longitude] as! Double
     }
     
-    /* Helper: Given an array of dictionaries, convert them to an array of StudentInformation objects */
-    static func studentInfoFromResults(results: [[String: AnyObject]]) -> [StudentInformation] {
+    /**
+    Helper: Given an array of dictionaries, convert them to an array of StudentInformation structs
+    Check if current user is already in list
+    */
+    static func studentInfoFromResults(results: [[String: AnyObject]], userKey: String) -> [StudentInformation] {
         var studentInfo = [StudentInformation]()
         
         for result in results {
-            studentInfo.append(StudentInformation(dictionary: result as [String : AnyObject]))
+            var newStudent = StudentInformation(dictionary: result as [String : AnyObject])
+            if newStudent.uniqueKey == userKey {
+                //user is already in list, keep objectID in UdacityClient instance
+                UdacityClient.sharedInstance().updateObjectID(newStudent.objectID)
+            }
+            studentInfo.append(newStudent)
         }
         
         return studentInfo

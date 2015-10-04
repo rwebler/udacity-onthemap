@@ -16,6 +16,7 @@ extension ParseClient {
     
     struct Methods {
         static let StudentLocation = "StudentLocation"
+        static let StudentLocationWithObjectID = "StudentLocation/{objectId}"
     }
     
     struct ParameterKeys {
@@ -23,6 +24,7 @@ extension ParseClient {
         static let Skip = "skip"
         static let Order = "order"
         static let Where = "where"
+        static let ObjectID = "objectId"
     }
     
     struct JSONResponseKeys {

@@ -28,7 +28,7 @@ class ParseClient : NSObject {
                 println(JSONResult)
                 if let results = JSONResult.valueForKey("results") as? [[String : AnyObject]] {
                     println(results)
-                    self.studentInformationList = StudentInformation.studentInfoFromResults(results)
+                    self.studentInformationList = StudentInformation.studentInfoFromResults(results, userKey: UdacityClient.sharedInstance().userKey!)
                     completionHandler(success: true, studentInfo: self.studentInformationList, error: nil)
                 }
             }
@@ -37,13 +37,26 @@ class ParseClient : NSObject {
     
     func postStudentInfo(studentInfo: [String: AnyObject], completionHandler: (success: Bool, error: String?) -> Void) {
         println(studentInfo)
-        taskForPOSTMethod(Methods.StudentLocation, jsonBody: studentInfo) { (JSONResult, error) in
-            if let error = error {
-                println(error.localizedDescription)
-                completionHandler(success: false, error: error.localizedDescription)
-            } else {
-                println(JSONResult)
-                completionHandler(success: true, error: nil)
+        
+        if UdacityClient.sharedInstance().objectID == nil {
+            taskForPOSTMethod(Methods.StudentLocation, jsonBody: studentInfo) { (JSONResult, error) in
+                if let error = error {
+                    println(error.localizedDescription)
+                    completionHandler(success: false, error: error.localizedDescription)
+                } else {
+                    println(JSONResult)
+                    completionHandler(success: true, error: nil)
+                }
+            }
+        } else {
+            taskForPUTMethod(ParseClient.substituteKeyInMethod(Methods.StudentLocationWithObjectID, key: ParameterKeys.ObjectID, value: UdacityClient.sharedInstance().objectID!)!, jsonBody: studentInfo) { (JSONResult, error) in
+                if let error = error {
+                    println(error.localizedDescription)
+                    completionHandler(success: false, error: error.localizedDescription)
+                } else {
+                    println(JSONResult)
+                    completionHandler(success: true, error: nil)
+                }
             }
         }
     }
@@ -111,8 +124,40 @@ class ParseClient : NSObject {
         return task
     }
     
+    func taskForPUTMethod(method: String, jsonBody: [String:AnyObject], completionHandler: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
+        println("in taskForPOSTMethod")
+        
+        /* 2/3. Build the URL and configure the request */
+        let urlString = Constants.BaseURLSecure + method
+        let url = NSURL(string: urlString)!
+        let request = NSMutableURLRequest(URL: url)
+        var jsonifyError: NSError? = nil
+        request.HTTPMethod = "PUT"
+        request.addValue(Constants.AppID, forHTTPHeaderField: "X-Parse-Application-Id")
+        request.addValue(Constants.APIKey, forHTTPHeaderField: "X-Parse-REST-API-Key")
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.HTTPBody = NSJSONSerialization.dataWithJSONObject(jsonBody, options: nil, error: &jsonifyError)
+        
+        /* 4. Make the request */
+        let task = session.dataTaskWithRequest(request) {data, response, downloadError in
+            
+            /* 5/6. Parse the data and use the data (happens in completion handler) */
+            if let error = downloadError {
+                let newError = ParseClient.errorForData(data, response: response, error: error)
+                completionHandler(result: nil, error: downloadError)
+            } else {
+                ParseClient.parseJSONWithCompletionHandler(data, completionHandler: completionHandler)
+            }
+        }
+        
+        /* 7. Start the request */
+        task.resume()
+        
+        return task
+    }
+    
     /* Helper: Substitute the key for the value that is contained within the method name */
-    class func subtituteKeyInMethod(method: String, key: String, value: String) -> String? {
+    class func substituteKeyInMethod(method: String, key: String, value: String) -> String? {
         if method.rangeOfString("{\(key)}") != nil {
             return method.stringByReplacingOccurrencesOfString("{\(key)}", withString: value)
         } else {

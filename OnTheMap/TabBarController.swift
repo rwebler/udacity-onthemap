@@ -26,6 +26,19 @@ class TabBarController: UITabBarController {
 
     func addPin (sender:UIButton) {
         println("add pressed")
+        if UdacityClient.sharedInstance().objectID != nil {
+            var alert = UIAlertController(title: "Update Info?", message: "You have already posted data. Do you want to update it?", preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
+            alert.addAction(UIAlertAction(title: "Update", style: UIAlertActionStyle.Default) { UIAlertAction in
+                self.callInformationPostingVC()
+            })
+            self.presentViewController(alert, animated: true, completion: nil)
+        } else {
+            callInformationPostingVC()
+        }
+    }
+    
+    func callInformationPostingVC() {
         let controller = self.storyboard!.instantiateViewControllerWithIdentifier("InformationPostingViewController") as! UIViewController
         self.presentViewController(controller, animated: true, completion: nil)
     }
