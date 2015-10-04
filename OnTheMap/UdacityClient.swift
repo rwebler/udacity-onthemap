@@ -257,11 +257,13 @@ class UdacityClient : NSObject {
         
         if let data = data {
             let newData = data.subdataWithRange(NSMakeRange(5, data.length - 5)) /* subset response data! */
-            let parsedResult: AnyObject? = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments, error: &parsingError)
+            let parsedResult: AnyObject? = NSJSONSerialization.JSONObjectWithData(newData, options: NSJSONReadingOptions.AllowFragments, error: &parsingError)
             
             if let error = parsingError {
+                println(error)
                 completionHandler(result: nil, error: error)
             } else {
+                println(parsedResult)
                 completionHandler(result: parsedResult, error: nil)
             }
         } else {
