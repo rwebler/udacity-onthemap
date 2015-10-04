@@ -21,12 +21,12 @@ class ParseClient : NSObject {
     }
     
     func getStudentInfo(completionHandler: (success: Bool, studentInfo: [StudentInformation]?, error: String?) -> Void) {
-        taskForGETMethod(Methods.StudentLocation, parameters: [ParameterKeys.Limit: 100, ParameterKeys.Skip: 0, ParameterKeys.Order: "-updatedAt"]) { (JSONResult, error) in
+        taskForGETMethod(Methods.StudentLocation, parameters: [ParameterKeys.Limit: ParameterValues.Limit, ParameterKeys.Skip: ParameterValues.Skip, ParameterKeys.Order: ParameterValues.Order]) { (JSONResult, error) in
             if let error = error {
                 completionHandler(success: false, studentInfo: nil, error: error.localizedDescription)
             } else {
                 println(JSONResult)
-                if let results = JSONResult.valueForKey("results") as? [[String : AnyObject]] {
+                if let results = JSONResult.valueForKey(JSONResponseKeys.Results) as? [[String : AnyObject]] {
                     println(results)
                     self.studentInformationList = StudentInformation.studentInfoFromResults(results, userKey: UdacityClient.sharedInstance().userKey!)
                     completionHandler(success: true, studentInfo: self.studentInformationList, error: nil)

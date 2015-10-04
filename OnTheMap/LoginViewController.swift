@@ -18,6 +18,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Facebook Button Placement
         var fbButton = FBSDKLoginButton()
         fbButton.center = self.view.center
         fbButton.delegate = self
@@ -93,7 +94,9 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                     })
                 })
             } else {
-                self.displayError("Facebook Login has failed")
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.displayError("Facebook Login has failed")
+                })
             }
         }
     }

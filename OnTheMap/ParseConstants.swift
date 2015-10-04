@@ -27,7 +27,14 @@ extension ParseClient {
         static let ObjectID = "objectId"
     }
     
+    struct ParameterValues {
+        static let Limit = 100
+        static let Skip = 0
+        static let Order = "-updatedAt"
+    }
+    
     struct JSONResponseKeys {
+        static let Results = "results"
         static let ObjectID = "objectId"
         static let UniqueKey = "uniqueKey"
         static let FirstName = "firstName"

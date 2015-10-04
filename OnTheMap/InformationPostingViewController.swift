@@ -25,6 +25,7 @@ class InformatonPostingViewController : UIViewController {
 
     var info = [String : AnyObject]()
     
+    // determines radius of area shown in map after zooming to the new pin
     let regionRadius: CLLocationDistance = 1000
     
     override func viewDidAppear(animated: Bool) {
@@ -54,9 +55,11 @@ class InformatonPostingViewController : UIViewController {
         
         let geocoder = CLGeocoder()
         geocoder.geocodeAddressString(address, completionHandler: {(placemarks: [AnyObject]!, error: NSError!) -> Void in
+            
+            self.infoActivityIndicator.stopAnimating()
+            self.infoActivityEffectView.hidden = true
+
             if let placemark = placemarks?[0] as? CLPlacemark {
-                self.infoActivityIndicator.stopAnimating()
-                self.infoActivityEffectView.hidden = true
                 self.infoMapView.hidden = false
                 
                 self.info["latitude"] = placemark.location.coordinate.latitude
@@ -74,6 +77,8 @@ class InformatonPostingViewController : UIViewController {
                 self.infoButton.setTitle("Submit", forState: .Normal)
                 self.infoButton.removeTarget(self, action: "sendLocation:", forControlEvents: UIControlEvents.TouchUpInside)
                 self.infoButton.addTarget(self, action: "sendURL:", forControlEvents: UIControlEvents.TouchUpInside)
+            } else {
+                self.displayError("No location found for that address")
             }
         })
     }
@@ -86,11 +91,14 @@ class InformatonPostingViewController : UIViewController {
         info["mediaURL"] = infoTextField.text
         
         ParseClient.sharedInstance().postStudentInfo(info) {(success, error) in
-            if success {
-                self.dismissViewControllerAnimated(true, completion: {});
-            } else {
-                println(error)
-            }
+            dispatch_async(dispatch_get_main_queue(), {
+                if success {
+                    self.dismissViewControllerAnimated(true, completion: {});
+                } else {
+                    println(error)
+                    self.displayError(error)
+                }
+            })
         }
     }
     
@@ -102,6 +110,17 @@ class InformatonPostingViewController : UIViewController {
         let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate,
             regionRadius * 2.0, regionRadius * 2.0)
         self.infoMapView.setRegion(coordinateRegion, animated: true)
+    }
+    
+    func displayError(errorString: String?) {
+        if let errorString = errorString {
+            
+            //display alert with error message
+            var alert = UIAlertController(title: "Information Posting Failed", message: errorString, preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.Default, handler: nil))
+            presentViewController(alert, animated: true, completion: nil)
+            
+        }
     }
     
 }

@@ -28,6 +28,7 @@ class UdacityClient : NSObject {
     }
     
     func updateObjectID(objectID: String) {
+        //keep only latest objectID, if list has more than one for the same student
         if self.objectID == nil {
             self.objectID = objectID
         }
@@ -37,7 +38,7 @@ class UdacityClient : NSObject {
         
         println("In authenticate")
         
-        let jsonBody = ["udacity": [JSONBodyKeys.Username: username, JSONBodyKeys.Password: password]]
+        let jsonBody = [JSONBodyKeys.Udacity: [JSONBodyKeys.Username: username, JSONBodyKeys.Password: password]]
         
         getSessionID(jsonBody) { (success, sessionID, userKey, errorString) in
             if success {
@@ -51,8 +52,8 @@ class UdacityClient : NSObject {
                     if success {
                         println(userData)
                         if let userData = userData {
-                            self.userLastName = userData["last_name"] as? String
-                            self.userFirstName = userData["first_name"] as? String
+                            self.userLastName = userData[JSONResponseKeys.UserLastName] as? String
+                            self.userFirstName = userData[JSONResponseKeys.UserFirstName] as? String
                         }
                     }
                     completionHandler(success: success, errorString: errorString)
@@ -66,7 +67,7 @@ class UdacityClient : NSObject {
     func authenticateWithFacebook(accessToken: String, completionHandler: (success: Bool, errorString: String?) -> Void) {
         println("In authenticate with FB")
         
-        let jsonBody = ["facebook_mobile": ["access_token": accessToken]]
+        let jsonBody = [JSONBodyKeys.Facebook: [JSONBodyKeys.FacebookAccessToken: accessToken]]
         getSessionID(jsonBody) { (success, sessionID, userKey, errorString) in
             if success {
                 self.facebookAccessToken = accessToken
@@ -80,8 +81,8 @@ class UdacityClient : NSObject {
                     if success {
                         println(userData)
                         if let userData = userData {
-                            self.userLastName = userData["last_name"] as? String
-                            self.userFirstName = userData["first_name"] as? String
+                            self.userLastName = userData[JSONResponseKeys.UserLastName] as? String
+                            self.userFirstName = userData[JSONResponseKeys.UserFirstName] as? String
                         }
                     }
                     completionHandler(success: success, errorString: errorString)

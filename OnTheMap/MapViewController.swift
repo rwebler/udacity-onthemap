@@ -13,47 +13,33 @@ class MapViewController : UIViewController, MKMapViewDelegate, OnTheMapControlle
     
     @IBOutlet weak var mapView: MKMapView!
     
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
     }
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
         reload()
     }
-    
+
     func reload() {
         ParseClient.sharedInstance().getStudentInfo({(success, studentInfo, error) in
             if success {
-                // We will create an MKPointAnnotation for each dictionary in "locations". The
-                // point annotations will be stored in this array, and then provided to the map view.
                 var annotations = [MKPointAnnotation]()
-                
-                // The "locations" array is loaded with the sample data below. We are using the dictionaries
-                // to create map annotations. This would be more stylish if the dictionaries were being
-                // used to create custom structs. Perhaps StudentLocation structs.
                 
                 if let studentInfo = studentInfo {
                     for info in studentInfo {
                         
-                        // Notice that the float values are being used to create CLLocationDegree values.
-                        // This is a version of the Double type.
                         let lat = CLLocationDegrees(info.latitude)
                         let long = CLLocationDegrees(info.longitude)
                         
-                        // The lat and long are used to create a CLLocationCoordinates2D instance.
                         let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
                         
                         let first = info.firstName
                         let last = info.lastName
                         let mediaURL = info.mediaURL
                         
-                        // Here we create the annotation and set its coordiate, title, and subtitle properties
                         var annotation = MKPointAnnotation()
                         annotation.coordinate = coordinate
                         annotation.title = "\(first) \(last)"
@@ -61,24 +47,35 @@ class MapViewController : UIViewController, MKMapViewDelegate, OnTheMapControlle
                         
                         println(annotation)
                         
-                        // Finally we place the annotation in an array of annotations.
                         annotations.append(annotation)
                     }
                     
-                    // When the array is complete, we add the annotations to the map.
                     dispatch_async(dispatch_get_main_queue(), {
                         self.mapView.addAnnotations(annotations)
                     })
                 }
             } else {
                 println(error)
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.displayError(error)
+                })
             }
         })
     }
     
-    // Here we create a view with a "right callout accessory view". You might choose to look into other
-    // decoration alternatives. Notice the similarity between this method and the cellForRowAtIndexPath
-    // method in TableViewDataSource.
+    func displayError(errorString: String?) {
+        if let errorString = errorString {
+            
+            //display alert with error message
+            var alert = UIAlertController(title: "Map Loading Failed", message: errorString, preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.Default, handler: nil))
+            presentViewController(alert, animated: true, completion: nil)
+            
+        }
+    }
+    
+    //Map Delegate Functions
+    
     func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
         
         println("In viewForAnnotation")
@@ -100,8 +97,6 @@ class MapViewController : UIViewController, MKMapViewDelegate, OnTheMapControlle
     }
     
     
-    // This delegate method is implemented to respond to taps. It opens the system browser
-    // to the URL specified in the annotationViews subtitle property.
     func mapView(mapView: MKMapView!, annotationView: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         
         println("In tap callout")

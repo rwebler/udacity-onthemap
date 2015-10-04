@@ -19,13 +19,29 @@ class ListViewController : UITableViewController, UITableViewDelegate, UITableVi
     
     func reload() {
         ParseClient.sharedInstance().getStudentInfo { success, studentInfo, error in
-            if let studentInfo = studentInfo {
-                self.linksTableView.reloadData()
-            } else {
-                println(error)
-            }
+            dispatch_async(dispatch_get_main_queue(), {
+                if let studentInfo = studentInfo {
+                    self.linksTableView.reloadData()
+                } else {
+                    println(error)
+                    self.displayError(error)
+                }
+            })
         }
     }
+    
+    func displayError(errorString: String?) {
+        if let errorString = errorString {
+            
+            //display alert with error message
+            var alert = UIAlertController(title: "List Loading Failed", message: errorString, preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.Default, handler: nil))
+            presentViewController(alert, animated: true, completion: nil)
+            
+        }
+    }
+    
+    //Table View Delegate Functions
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         

@@ -13,6 +13,7 @@ class TabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // add Pin and Reload buttons to the right of the Navigation Bar
         var rightPinBarButtonItem:UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Pin"), style: .Plain, target: self, action: "addPin:")
         var rightReloadBarButtonItem:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Refresh, target: self, action: "reloadPins:")
         self.navigationItem.setRightBarButtonItems([rightReloadBarButtonItem, rightPinBarButtonItem], animated: true)
