@@ -10,5 +10,4 @@ import UIKit
 
 protocol OnTheMapController {
     func reload() -> Void
-    func add() -> Void
 }

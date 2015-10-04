@@ -26,8 +26,8 @@ class TabBarController: UITabBarController {
 
     func addPin (sender:UIButton) {
         println("add pressed")
-        let selectedViewController = self.selectedViewController as! OnTheMapController
-        selectedViewController.add()
+        let controller = self.storyboard!.instantiateViewControllerWithIdentifier("InformationPostingViewController") as! UIViewController
+        self.presentViewController(controller, animated: true, completion: nil)
     }
     
     @IBAction func doLogout(sender: UIBarButtonItem) {
