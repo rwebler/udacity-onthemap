@@ -14,8 +14,7 @@ class ListViewController : UITableViewController, UITableViewDelegate, UITableVi
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
-        self.reload()
+        reload()
     }
     
     func reload() {
@@ -26,10 +25,6 @@ class ListViewController : UITableViewController, UITableViewDelegate, UITableVi
                 println(error)
             }
         }
-    }
-    
-    func add() {
-        
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

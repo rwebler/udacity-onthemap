@@ -18,9 +18,12 @@ class MapViewController : UIViewController, MKMapViewDelegate, OnTheMapControlle
     }
     
     override func viewDidLoad() {
-
         super.viewDidLoad()
         mapView.delegate = self
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         reload()
     }
     
@@ -71,10 +74,6 @@ class MapViewController : UIViewController, MKMapViewDelegate, OnTheMapControlle
                 println(error)
             }
         })
-    }
-    
-    func add() {
-        
     }
     
     // Here we create a view with a "right callout accessory view". You might choose to look into other

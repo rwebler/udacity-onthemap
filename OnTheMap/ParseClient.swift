@@ -35,6 +35,19 @@ class ParseClient : NSObject {
         }
     }
     
+    func postStudentInfo(studentInfo: [String: AnyObject], completionHandler: (success: Bool, error: String?) -> Void) {
+        println(studentInfo)
+        taskForPOSTMethod(Methods.StudentLocation, jsonBody: studentInfo) { (JSONResult, error) in
+            if let error = error {
+                println(error.localizedDescription)
+                completionHandler(success: false, error: error.localizedDescription)
+            } else {
+                println(JSONResult)
+                completionHandler(success: true, error: nil)
+            }
+        }
+    }
+    
     func taskForGETMethod(method: String, parameters: [String : AnyObject], completionHandler: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
         
         /* 1. Set the parameters */
@@ -65,18 +78,17 @@ class ParseClient : NSObject {
         return task
     }
     
-    func taskForPOSTMethod(method: String, parameters: [String : AnyObject], jsonBody: [String:AnyObject], completionHandler: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
+    func taskForPOSTMethod(method: String, jsonBody: [String:AnyObject], completionHandler: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
         println("in taskForPOSTMethod")
 
-        /* 1. Set the parameters */
-        var mutableParameters = parameters
-        
         /* 2/3. Build the URL and configure the request */
-        let urlString = Constants.BaseURLSecure + method + ParseClient.escapedParameters(mutableParameters)
+        let urlString = Constants.BaseURLSecure + method
         let url = NSURL(string: urlString)!
         let request = NSMutableURLRequest(URL: url)
         var jsonifyError: NSError? = nil
         request.HTTPMethod = "POST"
+        request.addValue(Constants.AppID, forHTTPHeaderField: "X-Parse-Application-Id")
+        request.addValue(Constants.APIKey, forHTTPHeaderField: "X-Parse-REST-API-Key")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.HTTPBody = NSJSONSerialization.dataWithJSONObject(jsonBody, options: nil, error: &jsonifyError)

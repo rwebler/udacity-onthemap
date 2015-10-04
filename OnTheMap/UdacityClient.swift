@@ -39,6 +39,10 @@ class UdacityClient : NSObject {
                 self.getUserData() { (success, userData, errorString) in
                     if success {
                         println(userData)
+                        if let userData = userData {
+                            self.userLastName = userData["last_name"] as? String
+                            self.userFirstName = userData["first_name"] as? String
+                        }
                     }
                     completionHandler(success: success, errorString: errorString)
                 }

@@ -21,7 +21,9 @@ class InformatonPostingViewController : UIViewController {
     
     @IBOutlet weak var infoActivityIndicator: UIActivityIndicatorView!
     
-    var info = [String : String]()
+    @IBOutlet weak var infoActivityEffectView: UIVisualEffectView!
+
+    var info = [String : AnyObject]()
     
     let regionRadius: CLLocationDistance = 1000
     
@@ -29,9 +31,6 @@ class InformatonPostingViewController : UIViewController {
         super.viewDidAppear(animated)
         
         infoActivityIndicator.stopAnimating()
-        
-        info["firstName"] = UdacityClient.sharedInstance().userFirstName
-        info["lastName"] = UdacityClient.sharedInstance().userLastName
         
         infoLabel.text = "Where are you studying today?"
         infoTextField.placeholder = "Type a city or location"
@@ -45,6 +44,7 @@ class InformatonPostingViewController : UIViewController {
         println("In sendLocation")
         
         infoActivityIndicator.startAnimating()
+        infoActivityEffectView.hidden = false
         
         let address = infoTextField.text
         
@@ -52,7 +52,12 @@ class InformatonPostingViewController : UIViewController {
         geocoder.geocodeAddressString(address, completionHandler: {(placemarks: [AnyObject]!, error: NSError!) -> Void in
             if let placemark = placemarks?[0] as? CLPlacemark {
                 self.infoActivityIndicator.stopAnimating()
+                self.infoActivityEffectView.hidden = true
                 self.infoMapView.hidden = false
+                
+                self.info["latitude"] = placemark.location.coordinate.latitude
+                self.info["longitude"] = placemark.location.coordinate.longitude
+                self.info["mapString"] = address
                 
                 let location = CLLocation(latitude: placemark.location.coordinate.latitude, longitude: placemark.location.coordinate.longitude)
                 self.centerMapOnLocation(location)
@@ -60,8 +65,10 @@ class InformatonPostingViewController : UIViewController {
                 self.infoMapView.addAnnotation(MKPlacemark(placemark: placemark))
                 
                 self.infoLabel.text = "What's the link?"
+                self.infoTextField.text = ""
                 self.infoTextField.placeholder = "Type a URL"
                 self.infoButton.setTitle("Submit", forState: .Normal)
+                self.infoButton.removeTarget(self, action: "sendLocation:", forControlEvents: UIControlEvents.TouchUpInside)
                 self.infoButton.addTarget(self, action: "sendURL:", forControlEvents: UIControlEvents.TouchUpInside)
             }
         })
@@ -69,8 +76,21 @@ class InformatonPostingViewController : UIViewController {
     
     func sendURL(sender: UIButton) {
         println("In sendURL")
-        
+
         infoActivityIndicator.startAnimating()
+        
+        info["firstName"] = UdacityClient.sharedInstance().userFirstName
+        info["lastName"] = UdacityClient.sharedInstance().userLastName
+        info["uniqueKey"] = UdacityClient.sharedInstance().userKey
+        info["mediaURL"] = infoTextField.text
+        
+        ParseClient.sharedInstance().postStudentInfo(info) {(success, error) in
+            if success {
+                //self.dismissViewControllerAnimated(true, completion: {});
+            } else {
+                
+            }
+        }
     }
     
     @IBAction func cancel(sender: UIBarButtonItem) {
