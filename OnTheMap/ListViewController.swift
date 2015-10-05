@@ -12,6 +12,13 @@ class ListViewController : UITableViewController, UITableViewDelegate, UITableVi
     
     @IBOutlet weak var linksTableView: UITableView!
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        var backMapImage = UIImage(named: "Tile")
+        self.view.backgroundColor = UIColor(patternImage: backMapImage!)
+    }
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         reload()
@@ -51,6 +58,7 @@ class ListViewController : UITableViewController, UITableViewDelegate, UITableVi
         
         cell.textLabel!.text = "\(pin.firstName) \(pin.lastName)"
         cell.detailTextLabel!.text = pin.mediaURL
+        cell.backgroundColor = UIColor.clearColor()
         
         return cell
     }
