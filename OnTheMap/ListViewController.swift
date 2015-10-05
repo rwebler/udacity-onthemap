@@ -51,7 +51,6 @@ class ListViewController : UITableViewController, UITableViewDelegate, UITableVi
         
         cell.textLabel!.text = "\(pin.firstName) \(pin.lastName)"
         cell.detailTextLabel!.text = pin.mediaURL
-        cell.backgroundColor = UIColor.clearColor()
         
         return cell
     }
