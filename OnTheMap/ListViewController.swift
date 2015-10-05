@@ -35,7 +35,7 @@ class ListViewController : UITableViewController, UITableViewDelegate, UITableVi
             
             //display alert with error message
             var alert = UIAlertController(title: "List Loading Failed", message: errorString, preferredStyle: UIAlertControllerStyle.Alert)
-            alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.Default, handler: nil))
+            alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default, handler: nil))
             presentViewController(alert, animated: true, completion: nil)
             
         }
@@ -51,6 +51,7 @@ class ListViewController : UITableViewController, UITableViewDelegate, UITableVi
         
         cell.textLabel!.text = "\(pin.firstName) \(pin.lastName)"
         cell.detailTextLabel!.text = pin.mediaURL
+        cell.backgroundColor = UIColor.clearColor()
         
         return cell
     }

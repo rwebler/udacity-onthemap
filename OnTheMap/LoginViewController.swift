@@ -54,8 +54,8 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
             
             //display alert with error message
             loginMessageLabel.text = "Login to Udacity"
-            var alert = UIAlertController(title: "Login Failed", message: errorString, preferredStyle: UIAlertControllerStyle.Alert)
-            alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.Default, handler: nil))
+            var alert = UIAlertController(title: "Login Failed", message: errorString + " Please try again.", preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default, handler: nil))
             presentViewController(alert, animated: true, completion: nil)
             
             // shake the view

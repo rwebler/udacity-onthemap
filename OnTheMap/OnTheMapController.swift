@@ -8,6 +8,7 @@
 
 import UIKit
 
+// Used in TabBarController.reloadPins, to access the reload() method in the current controller
 protocol OnTheMapController {
     func reload() -> Void
 }

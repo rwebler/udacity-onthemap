@@ -99,7 +99,7 @@ class UdacityClient : NSObject {
             
             /* 3. Send the desired value(s) to completion handler */
             if let error = error {
-                completionHandler(success: false, sessionID: nil, userKey: nil, errorString: "Login Failed (Session ID).")
+                completionHandler(success: false, sessionID: nil, userKey: nil, errorString: error.localizedDescription)
             } else {
                 if let dataDict = result as? [String: [String: AnyObject]] {
                     println("\(dataDict)")
@@ -109,7 +109,18 @@ class UdacityClient : NSObject {
                     completionHandler(success: true, sessionID: sessDict[JSONResponseKeys.SessId] as? String, userKey: acctDict[JSONResponseKeys.AcctKey] as? String, errorString: nil)
                 } else {
                     println("\(result)")
-                    completionHandler(success: false, sessionID: nil, userKey: nil, errorString: "Login Failed (Session ID).")
+                    var udacityError = "Invalid session data received."
+                    if let errorDict = result as? [String: AnyObject] {
+                        switch errorDict["status"] as! Int {
+                        case 400:
+                            udacityError = "Missing username or password."
+                        case 403:
+                            udacityError = "Wrong username or password."
+                        default:
+                            udacityError = "Unknown error receiving session data."
+                        }
+                    }
+                    completionHandler(success: false, sessionID: nil, userKey: nil, errorString: udacityError)
                 }
             }
         }
@@ -121,14 +132,14 @@ class UdacityClient : NSObject {
             
             /* 3. Send the desired value(s) to completion handler */
             if let error = error {
-                completionHandler(success: false, userData: nil, errorString: "Get User Data Failed (Request)")
+                completionHandler(success: false, userData: nil, errorString: error.localizedDescription)
             } else {
                 if let userDict = result.valueForKey(JSONResponseKeys.UserDataDictionary) as? [String: AnyObject] {
                     println("\(userDict)")
                     completionHandler(success: true, userData: userDict, errorString: nil)
                 } else {
                     println("\(result)")
-                    completionHandler(success: false, userData: nil, errorString: "Get User Data Failed (Parsing)")
+                    completionHandler(success: false, userData: nil, errorString: "Invalid user data received.")
                 }
             }
         }
